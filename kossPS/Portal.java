@@ -3,7 +3,7 @@ import java.io.*;
 import java.util.*;
 public class Portal
 {
-    public static void main()throws IOException  //function to be executed
+    public static void main(String args[])throws IOException  //function to be executed
     {
         String c="",d="";
         do
