@@ -58,7 +58,7 @@ public class Portal
                         break;
                     }
                     System.out.println("Enter ATM card number to confirm login.");
-                    atm=Integer.parseInt(in.readLine());
+                    atm=Long.parseLong(in.readLine());
                     if(ob.ATMcard!=atm)
                     {
                         System.out.println("Wrong ATM card number entered.");
@@ -86,23 +86,34 @@ public class Portal
                             int tc=NS+NA+NC;                             
                             System.out.println("Enter the date of travelling in DD-MM-YYYY format :");
                             String date=in.readLine();
+                            System.out.println("Code for different stations");
+                            System.out.println("1-howrah");
+                            System.out.println("2-kharagpur");
+                            System.out.println("3-midnapur");
+                            System.out.println("4-raigarh");
+                            System.out.println("5-raipur");
+                            System.out.println("6-bilaspur");
+                            System.out.println("7-bhopal");
+                            System.out.println("8-pune");
+                            System.out.println("9-mumbai");
+                            System.out.println("10-goa");
                             System.out.println("Enter source station code:");
                             int s=Integer.parseInt(in.readLine());
-                            if(s<1||s>(tn+5))
+                            if(s<1||s>10)
                             {
-                                System.out.println("The train runs from station 1 to station "+(5+tn));
+                                System.out.println("The train runs from station 1 to station 10");
                                 break;
                             }    
                             System.out.println("Enter destination source code:");
                             int ds=Integer.parseInt(in.readLine());
-                            if(ds<1||ds>(tn+5))
+                            if(ds<1||ds>10)
                             {
-                                System.out.println("The train runs from station 1 to station "+(5+tn));
+                                System.out.println("The train runs from station 1 to station 10");
                                 break;
                             }
                             if(ds<s)
                             {
-                                System.out.println("The train runs from station 1 to station "+(5+tn)+" and not in the opposite direction");
+                                System.out.println("The train runs from station 1 to station 10 and not in the opposite direction");
                                 break;
                             }
                             if(ds==s)
@@ -175,6 +186,13 @@ public class Portal
                         System.out.println("The account was closed on "+ob.name);
                         break;
                     }
+                    System.out.println("Enter ATM card number to confirm delete.");
+                    atm=Long.parseLong(in.readLine());
+                    if(ob.ATMcard!=atm)
+                    {
+                        System.out.println("Wrong ATM card number entered.");
+                        break;
+                    }
                     System.out.println("Name of account holder: "+ob.name);
                     System.out.println("Delete account? Y/N");
                     c=in.readLine();
@@ -194,13 +212,14 @@ public class Portal
                 if(ch==4)
                     break;
                 System.out.println();
-                System.out.println("Perform another operation? Y/N");
-                c=in.readLine();
             }
-            catch(Exception e)
-            {
-                System.out.println("Enter valid inputs");
-            }
+                catch(Exception e)
+                {
+                    System.out.println("Enter valid inputs");
+                }
+            System.out.println("Perform another operation? Y/N");
+            c=in.readLine();
+
         }while(c.equalsIgnoreCase("Y"));
     }
 
@@ -258,7 +277,7 @@ public class Portal
                         String det=br.readLine();
                         String det1=br.readLine();
                         String det2=br.readLine();
-                        String det3=br.readLine();
+                        String det3=br.readLine();                      
                         if(pn==a)
                         {                   
                             System.out.println("Seat number- "+det1+"  source station code- "+det2+"   destination source code- "+det3);

@@ -12,7 +12,8 @@ class Train
     String date;
     double amount;
     long ATMcard;
-
+    String stations[]={"howrah","kharagpur","midnapur","raigarh","raipur","bilaspur","bhopal","pune","mumbai","goa"};
+    
     Train(int n,int tkt,String st,int s,int d,long a,String da,double amt,long b) throws IOException
     {
         trnmbr=n;
@@ -28,7 +29,7 @@ class Train
         opf.close();
         for(int j=1;j<=tickets;j++)
         {
-            int ate[]=new int[5+n];
+            int ate[]=new int[10];
             ar=ate;
             if(checkSeat())
                 BookTicket();
@@ -104,8 +105,8 @@ class Train
         System.out.println("Train Number: "+this.trnmbr);
         System.out.println("Number of tickets booked: "+this.tickets);
         System.out.println("Date of travelling: "+this.date);
-        System.out.println("Station code travelling from: "+src);
-        System.out.println("Station code travelling to: "+dest);
+        System.out.println("Station travelling from: "+stations[src-1]);
+        System.out.println("Station travelling to: "+stations[dest-1]);
         System.out.println("COACH 1");
         System.out.println("Ticket booked and amount of rupees "+this.amount+" paid by ATM card number "+this.ATMcard);
     }
