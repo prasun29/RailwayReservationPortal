@@ -3,6 +3,7 @@ import java.io.*;
 import java.util.*;
 public class Portal
 {
+    static String stations[]={"howrah","kharagpur","midnapur","raigarh","raipur","bilaspur","bhopal","pune","mumbai","goa"};
     public static void main(String args[])throws IOException  //function to be executed
     {
         String c="",d="";
@@ -86,6 +87,12 @@ public class Portal
                             int tc=NS+NA+NC;                             
                             System.out.println("Enter the date of travelling in DD-MM-YYYY format :");
                             String date=in.readLine();
+                            if(!validateDate(date))
+                            {
+                                System.out.println("Please enter a valid date which is within 4 months from today");
+                                break;
+                            }
+                                
                             System.out.println("Code for different stations");
                             System.out.println("1-howrah");
                             System.out.println("2-kharagpur");
@@ -101,19 +108,19 @@ public class Portal
                             int s=Integer.parseInt(in.readLine());
                             if(s<1||s>10)
                             {
-                                System.out.println("The train runs from station 1 to station 10");
+                                System.out.println("The train runs from station 1(howrah) to station 10(goa)");
                                 break;
                             }    
                             System.out.println("Enter destination source code:");
                             int ds=Integer.parseInt(in.readLine());
                             if(ds<1||ds>10)
                             {
-                                System.out.println("The train runs from station 1 to station 10");
+                                System.out.println("The train runs from station 1(howrah) to station 10(goa)");
                                 break;
                             }
                             if(ds<s)
                             {
-                                System.out.println("The train runs from station 1 to station 10 and not in the opposite direction");
+                                System.out.println("The train runs from station 1 (howrah)to station 10(goa) and not in the opposite direction");
                                 break;
                             }
                             if(ds==s)
@@ -231,7 +238,7 @@ public class Portal
         n=n.concat(n.valueOf(c.get(Calendar.SECOND)));
         n=n.concat(n.valueOf(c.get(Calendar.MINUTE)+c.get(Calendar.HOUR)));
         n=n.concat(n.valueOf(c.get(Calendar.DATE)));
-        n=n.concat(n.valueOf(c.get(Calendar.MONTH)));
+        n=n.concat(n.valueOf(c.get(Calendar.MONTH)+1));
         n=n.concat(n.valueOf(c.get(Calendar.YEAR)));
         long num=Long.parseLong(n);
         return(num);
@@ -249,7 +256,7 @@ public class Portal
     {
         BufferedReader inf=new BufferedReader(new FileReader("acc"+acn+".txt"));
         String s,u,t;
-        int flag=0,seaa;
+        int flag=0,seaa,dist1,dist2;
         s=inf.readLine();
         s=inf.readLine();
         u=inf.readLine();             
@@ -277,10 +284,18 @@ public class Portal
                         String det=br.readLine();
                         String det1=br.readLine();
                         String det2=br.readLine();
-                        String det3=br.readLine();                      
+                        if(det2.length()==1)
+                            dist1=(int)det2.charAt(0)-49;
+                        else
+                            dist1=9;
+                        String det3=br.readLine();  
+                        if(det3.length()==1)
+                            dist2=(int)det3.charAt(0)-49;
+                        else
+                            dist2=9;
                         if(pn==a)
                         {                   
-                            System.out.println("Seat number- "+det1+"  source station code- "+det2+"   destination source code- "+det3);
+                            System.out.println("Seat number- "+det1+"  source station - "+stations[dist1]+"   destination source code- "+stations[dist2]);
                         }
                         t=br.readLine();
                         if(t!=""&&t!=null)
@@ -555,5 +570,74 @@ public class Portal
         br.close();
         tem.renameTo(tr);
     }
+    
+   public static boolean validateDate(String Date)
+   {
+       Calendar c=Calendar.getInstance();
+       int i=0,j=0,dates=0,months=0,years=0;
+       int date=c.get(Calendar.DATE);
+       int month=c.get(Calendar.MONTH)+1;
+       int year=c.get(Calendar.YEAR);
+       while(i<Date.length())
+       {
+           if(Date.charAt(i)=='-')
+           {
+               if(j==0)
+               {
+                   dates=Integer.valueOf(Date.substring(0,i));
+                   j=i;
+               }
+               else
+               {
+                   months=Integer.valueOf(Date.substring(j+1,i));
+                   j=i;
+                }
+            }
+            i++;
+        }
+        years=Integer.valueOf(Date.substring(j+1,i));        
+        if(dates<=0||months<=0)
+            return false;
+        if(months==1||months==3||months==5||months==7||months==8||months==10||months==12)
+            if(dates>31)
+                return false;
+        if(months==4||months==6||months==9||months==11)    
+            if(dates>30)
+                return false;
+        if(months==2)
+        {
+            if((years%4==0)&&((years%100!=0)||(years%400==0)))
+            {
+                if(dates>29)
+                    return false;
+            }        
+            else
+                if(dates>28)
+                    return false;
+        }            
+        if(years<year||years>(year+1))
+            return false;
+        if((months==month&&dates<date)||months>12)
+            return false;
+        if(month<=8)
+        {
+            if((months<month)||(months>(month+4))||((months==month+4)&&dates>date))
+                return false;
+        }
+        else
+        {
+            if((months<=(month+4)%12)||months>=month)
+            {
+                if((months==(month+4)%12)&&dates>date)
+                    return false;
+            }
+            else 
+                return false;
+        }       
+            
+        return true;    
+   }     
+        
+        
 
 }

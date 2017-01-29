@@ -13,4 +13,6 @@ comment5.params=n
 comment5.target=boolean\ exists(java.lang.String)
 comment6.params=trn\ sou\ desti\ mve
 comment6.target=void\ moveWait(java.lang.String,\ java.lang.String,\ java.lang.String,\ int)
-numComments=7
+comment7.params=Date
+comment7.target=boolean\ validateDate(java.lang.String)
+numComments=8
