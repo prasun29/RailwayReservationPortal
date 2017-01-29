@@ -1,0 +1,14 @@
+#BlueJ class context
+comment0.params=n\ tkt\ st\ s\ d\ a\ da\ amt\ b
+comment0.target=Train(int,\ int,\ java.lang.String,\ int,\ int,\ long,\ java.lang.String,\ double,\ long)
+comment1.params=
+comment1.target=boolean\ checkSeat()
+comment2.params=
+comment2.target=void\ BookTicket()
+comment3.params=
+comment3.target=void\ showTickets()
+comment4.params=seat
+comment4.target=void\ toFile(int)
+comment5.params=
+comment5.target=void\ waitList()
+numComments=6
