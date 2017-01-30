@@ -295,7 +295,7 @@ public class Portal
                             dist2=9;
                         if(pn==a)
                         {                   
-                            System.out.println("Seat number- "+det1+"  source station - "+stations[dist1]+"   destination source - "+stations[dist2]);
+                            System.out.println("SEAT NUMBER -  "+det1+"  FROM - "+stations[dist1]+"   TO - "+stations[dist2]);
                         }
                         t=br.readLine();
                         if(t!=""&&t!=null)
